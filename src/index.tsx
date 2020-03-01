@@ -8,7 +8,7 @@ import {
   GraphRequestManager,
 } from 'react-native-fbsdk';
 
-import { Container, UserData, Loading, Text } from './styles';
+import { Container, UserData, Loading, UserName, UserEmail } from './styles';
 
 interface IUser {
   name: string;
@@ -67,14 +67,15 @@ const App: React.FC = () => {
           {loading && <Loading />}
           {user && (
             <>
-              <Text>{user.name}</Text>
-              <Text>{user.email}</Text>
+              <UserName>{user.name}</UserName>
+              <UserEmail>{user.email}</UserEmail>
             </>
           )}
         </UserData>
         <LoginButton
           permissions={['public_profile', 'email']}
           onLoginFinished={finishLogin}
+          onLogoutFinished={() => setUser(null)}
         />
       </Container>
     </>
